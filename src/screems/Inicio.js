@@ -4,7 +4,7 @@ import Navigation3 from '../Navegation/Navigation3';
 import React from 'react';
 import {View, Text} from 'react-native';
 const App = ({props, route}) => {
-  // const {nombre} = route.params;
+  const {nombre} = route.params;
   return (
     <>
       <NavigationContainer independent={true}>

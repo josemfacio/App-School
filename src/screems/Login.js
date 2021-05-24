@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import firebase from '../../utils/firebase';
 import 'firebase/firestore';
+import {Container, Header, Content, Button} from 'native-base';
 firebase.firestore().settings({experimentalForceLongPolling: true});
 const db = firebase.firestore(firebase);
 import {
@@ -28,7 +29,7 @@ const Home = props => {
     Alert.alert('Bienvenido', 'Bienbenido ' + arrayaux[0].names, [
       {text: 'OK'},
     ]);
-    navigation.navigate('homecopy', {nombre: arrayaux[0].names});
+    navigation.navigate('homecopy', {nombre: arrayaux[0].id});
   };
   const Verificar = () => {
     if (nombre.trim() === '' || contra.trim() === '') {
@@ -73,13 +74,21 @@ const Home = props => {
         placeholder="Contraseña"
         onChangeText={texto => guardarcontraseña(texto)}
       />
-      <TouchableHighlight onPress={Verificar}>
-        <View style={styles.button}>
-          <Text style={styles.countText}>
-            {isloading ? 'CARGANDO...' : 'Ingresar'}
-          </Text>
-        </View>
-      </TouchableHighlight>
+      <Button
+        rounded
+        warning
+        onPress={Verificar}
+        style={{
+          alignSelf: 'center',
+          paddingLeft: 40,
+          paddingRight: 40,
+          marginTop: 10,
+          height: 40,
+        }}>
+        <Text style={styles.countText}>
+          {isloading ? 'CARGANDO...' : 'Ingresar'}
+        </Text>
+      </Button>
     </View>
   );
 };
@@ -109,10 +118,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingTop: 20,
     paddingBottom: 20,
-    backgroundColor: '#ff8000',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#fff',
     alignItems: 'center',
   },
   countText: {
